@@ -1,18 +1,21 @@
 using UnityEngine;
+using DG.Tweening;
 
-public class Animation : MonoBehaviour
+public class Sequences : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Vector3 _targetPosition;
+    [SerializeField] private Vector3 _rotate;
+    [SerializeField] private float _durationMove;
+    [SerializeField] private float _durationRotate;
+    [SerializeField] private float _scale;
+    [SerializeField] private float _durationScale;
 
-    public void RunJumpAnimation()
+    private void Start()
     {
-        float horizontalMove = Input.GetAxisRaw("Horizontal");
+        Sequence sequence = DOTween.Sequence();       
 
-        _animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); 
-    }
-
-    public void LaunchAnimationOfWalking(bool isGround)
-    {
-        _animator.SetBool("isGround", isGround);
+        sequence.Append(transform.DOMove(_targetPosition, _durationMove));
+        sequence.Append(transform.DOScale(_scale, _durationScale));
+        sequence.Append(transform.DORotate(_rotate, _durationRotate));
     }
 }
