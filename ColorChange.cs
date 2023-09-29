@@ -1,18 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Animation : MonoBehaviour
+public class СolorСhange : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Image _button;
+    [SerializeField] private Color _color;
 
-    public void RunJumpAnimation()
+    public void RunColorChange()
     {
-        float horizontalMove = Input.GetAxisRaw("Horizontal");
-
-        _animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); 
-    }
-
-    public void LaunchAnimationOfWalking(bool isGround)
-    {
-        _animator.SetBool("isGround", isGround);
+        _button.color = _color;
     }
 }
